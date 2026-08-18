@@ -4,25 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-/**
- * Punto único de composición que decide, a partir del {@code audioType} solicitado,
- * qué implementación de {@link AudioPlayer} (adaptador) debe usarse.
- *
- * <p>Esta fábrica es la única clase del proyecto que conoce la existencia de los
- * adaptadores concretos ({@link AdvancedAudioPlayerAdapter}, {@link PremiumAudioPlayerAdapter}).
- * {@code Client} solo conoce el tipo {@link AudioPlayer} devuelto por
- * {@link #getPlayer(String)}.</p>
- *
- * <p><b>Extensibilidad:</b> para agregar un tercer proveedor no es necesario modificar
- * {@code Client} ni ninguno de los adaptadores ya existentes. Basta con:
- * <ol>
- *     <li>Crear su propio adaptador (nueva clase que implemente {@link AudioPlayer}).</li>
- *     <li>Registrar, en el bloque estático de esta fábrica, los nuevos tipos de audio
- *     que ese adaptador resuelve, mediante {@link #register(String, Supplier)}.</li>
- * </ol>
- * Ninguna clase existente (Client, AdvancedAudioPlayerAdapter, PremiumAudioPlayerAdapter)
- * se ve afectada por ese cambio.</p>
- */
+
 public final class AudioPlayerFactory {
 
     private static final Map<String, Supplier<AudioPlayer>> REGISTRY = new LinkedHashMap<>();
